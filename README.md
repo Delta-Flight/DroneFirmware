@@ -1,64 +1,59 @@
-# ESP-FC Flight Controller
-The mini, DIY, Low cost, ESP32 based, high performance flight controller for hobbyists.
+# Kwid-FC Firmware
+Neste repositório está o código fonte do firmware usado na controladora de voo ESP32 para o projeto KWID da DeltaV Drones
 
-## Features
-* Espressif targets (ESP32, ESP8266, ESP32-S3, ESP32-S2, ESP32-C3)
-* ESC protocols (PWM, Oneshot125/42, Multishot, Brushed, Dshot150/300/600 bidirectional)
-* PPM, SBUS and CRSF Receivers
-* Builtin ESP-NOW receiver and WiFi configuration [read more...](/docs/wireless.md)
-* SPI and I2C gyro modules support (MPU6050, MPU9250, ICM20602, BMI160)
-* Flight modes (ACRO, ANGLE, AIRMODE)
+## Alterações feitas para o KWID
+
+## Funcionalidades
+* Placas Espressif (ESP32, ESP8266, ESP32-S3, ESP32-S2, ESP32-C3)
+* Protocolos de ESC (PWM, Oneshot125/42, Multishot, Brushed, Dshot150/300/600 bidirectional)
+* Receptores PPM, SBUS e CRSF
+* Receptor ESP-NOW e Configuração WiFi integradas [Leia Mais...](/docs/wireless.md)
+* Módulo giroscópio SPI e I2C suportados (MPU6050, MPU9250, ICM20602, BMI160)
+* Modos de voo (ACRO, ANGLE, AIRMODE)
 * Frames (Quad X)
-* Betaflight configuration tool compatible (v10.8-v10.10)
-* Configurable Gyro Filters (LPF, Notch, dTerm, RPM)
-* Blackbox recording (OpenLog/OpenLager/Flash)
-* Up to 4kHz gyro/loop on ESP32 with SPI gyro
-* MSP protocol interface
-* CLI Interface
-* Resorce/Pin mapping
-* In flight PID Tuning
+* Compatibilidade com Betaflight configuration (v10.8-v10.10)
+* Filtros de giroscópio personalizados (LPF, Notch, dTerm, RPM)
+* Gravação Blackbox (OpenLog/OpenLager/Flash)
+* gyro/loop de até 4kHz no ESP32 com giroscópio SPI
+* Protocolo de interface MSP
+* Protocolo de interface CLI
+* Mapeamento de Recursos/Pinos
+* Ajuste de PID em voo
 * Buzzer
-* Lipo voltage monitor
-* Failsafe mode
+* Monitor de tensão em baterias Lipo
+* Failsafe
 
 ## Requisitos
 Hardware:
-* ESP32 mini board  ESP8266 Wemos D1 mini or similar
-* MPU9250 SPI or MPU6050 I2C gyro (GY-88, GY-91, GY-521 or similar)
-* PDB with 5V BEC
-* Buzzer and some electronic components (optional).
+* ESP32 mini board, ESP8266 Wemos D1 mini ou similar
+* MPU9250 SPI ou MPU6050 I2C gyro (GY-88, GY-91, GY-521 ou similar)
+* PDB com 5V BEC
+* Buzzer e alguns componentes eletrônicos (opcional).
 
 Software:
 * [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) (v10.8 to v10.10)
 * [CH340 Driver](https://sparks.gogo.co.nz/ch340.html)
 
-## Flashing
-1. Download and unzip selected firmware from [Releases Page](https://github.com/rtlopez/esp-fc/releases)
-2. Visit [ESP Tool Website](https://espressif.github.io/esptool-js/)
+## Gravar Firmware
+1. Download o firmware desejado na [Página de Lançamento](https://github.com/rtlopez/esp-fc/releases)
+2. Vá para [Site ESP Tool](https://espressif.github.io/esptool-js/)
 3. Clique em "Connect" e escolha a porta do dispositivo
 4. Adicione o arquivo de firmware e escolha o "Flash Address" para `0x1000`
 5. Clique em "Program"
 6. Assim que concluir, reinicie o dispositivo
 
-Note: only ESP32 and ESP8266 can be flashed in this way.
-
-![ESP-FC Flashing](/docs/images/esptool-js-flash-connect.png)
+OBS: Apenas ESP32 e ESP8266 podem ter o firmware gravado dessa forma.
 
 ## Setup
-After flashing you need to configure few things first:
+Depois de gravar o firmware, você precisa configurar algumas coisas:
  1. Configure pinout according to your wiring, especially pin functions, you can find more information in [CLI Reference](/docs/cli.md)
- 2. Connect to [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) and setup to your preferences,
- 3. Test motors without propellers
- 4. Have fun ;)
+ 2. Conecte ao [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) e faça sua configuração inicial
+ 3. Teste seus motores SEM hélice
+ 4. Se divirta ;)
 
-> [!NOTE]
-> Not all functions displayed in configurator are avalable in firmware. The rule of thumb is if you cannot change specific option in Betaflight Configurator, that means it is not supported. It usually rolls back to previous value after save.
-
-Here are more details about [how to setup](/docs/setup.md).
-
-## Wiring diagrams
-
-[![ESP-FC example wiring diagrams](/docs/images/espfc_wiring_combined.png)](/docs/wiring.md)
+> [!NOTA]
+> Nem todas as funções que aparecem no Betaflight Configurator estão realmente disponíveis no firmware. se você não consegue alterar uma determinada opção no Configurator, isso significa que ela não é suportada. Normalmente, o valor volta para o anterior depois de salvar.
+Aqui está mais detalhes sobre [Como configurar o Betaflight Configurator](/docs/setup.md).
 
 ## Chips Suportados
 
