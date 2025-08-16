@@ -21,24 +21,24 @@ The mini, DIY, Low cost, ESP32 based, high performance flight controller for hob
 * Lipo voltage monitor
 * Failsafe mode
 
-## Requirements
+## Requisitos
 Hardware:
-* ESP32 mini board or ESP8266 Wemos D1 mini or similar
+* ESP32 mini board  ESP8266 Wemos D1 mini or similar
 * MPU9250 SPI or MPU6050 I2C gyro (GY-88, GY-91, GY-521 or similar)
 * PDB with 5V BEC
 * Buzzer and some electronic components (optional).
 
 Software:
 * [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) (v10.8 to v10.10)
-* [CH340 usb-serial converter driver](https://sparks.gogo.co.nz/ch340.html)
+* [CH340 Driver](https://sparks.gogo.co.nz/ch340.html)
 
 ## Flashing
 1. Download and unzip selected firmware from [Releases Page](https://github.com/rtlopez/esp-fc/releases)
 2. Visit [ESP Tool Website](https://espressif.github.io/esptool-js/)
-3. Click "Connect" and choose device port in dialog
-4. Add firmware file and set Flash Address to `0x00`
-5. Click "Program"
-6. After success power cycle board
+3. Clique em "Connect" e escolha a porta do dispositivo
+4. Adicione o arquivo de firmware e escolha o "Flash Address" para `0x1000`
+5. Clique em "Program"
+6. Assim que concluir, reinicie o dispositivo
 
 Note: only ESP32 and ESP8266 can be flashed in this way.
 
@@ -60,96 +60,79 @@ Here are more details about [how to setup](/docs/setup.md).
 
 [![ESP-FC example wiring diagrams](/docs/images/espfc_wiring_combined.png)](/docs/wiring.md)
 
-## Supported chips
+## Chips Suportados
 
- - **ESP32** - recommended
+ - **ESP32** - recomendado
  - **ESP32-S2** - experimantal
  - **ESP32-S3** - experimantal
- - **ESP32-C3** - experimantal, lack of performance, no FPU
- - **RP2040** - experimantal, lack of performance, no FPU
- - **ESP8266** - deprecated, may stop being developed
+ - **ESP32-C3** - experimantal, queda de performance, sem FPU
+ - **RP2040** - experimantal, queda de performance, sem FPU
+ - **ESP8266** - obsoleto
 
-## Supported Interfaces
+## Interfaces Suportadas
 
 | Interface       | ESP8266 | ESP32 | RP2040 |
 |----------------:|--------:|------:|-------:|
-| UART            | Yes     |   Yes |    Yes |
-| I2C             | Yes     |   Yes |    Yes |
-| SPI             | -       |   Yes |    Yes |
+| UART            | Sim     |   Sim |    Sim |
+| I2C             | Sim     |   Sim |    Sim |
+| SPI             | -       |   Sim |    Sim |
 
-## Supported Receiver Protocols
-
-| Protocol        | ESP8266 | ESP32 | RP2040 |
-|----------------:|--------:|------:|-------:|
-| PPM             | Yes     |   Yes |    Yes |
-| SBUS            | Yes     |   Yes |    Yes |
-| CRSF (ELRS)     | Yes     |   Yes |    Yes |
-
-## Supported Motor Protocols
+## Protocolos de Receptor Suportados
 
 | Protocol        | ESP8266 | ESP32 | RP2040 |
 |----------------:|--------:|------:|-------:|
-| PWM             | Yes     |   Yes |    Yes |
-| BRUSHED         | Yes     |   Yes |    Yes |
-| ONESHOT125      | Yes     |   Yes |    Yes |
-| ONESHOT42       | -       |   Yes |    Yes |
-| MULTISHOT       | -       |   Yes |    Yes |
-| DSHOT150        | Yes     |   Yes |    Yes |
-| DSHOT300        | Yes     |   Yes |    Yes |
-| DSHOT600        | -       |   Yes |    Yes |
+| PPM             | Sim     |   Sim |    Sim |
+| SBUS            | Sim     |   Sim |    Sim |
+| CRSF (ELRS)     | Sim     |   Sim |    Sim |
 
-# Other Protocols
+## Protocolos de Motor Suportados
 
 | Protocol        | ESP8266 | ESP32 | RP2040 |
 |----------------:|--------:|------:|-------:|
-| MSP             | Yes     |   Yes |    Yes |
-| CLI             | Yes     |   Yes |    Yes |
-| BLACKBOX        | Yes     |   Yes |    Yes |
-| ESPNOW          | Yes     |   Yes |      - |
+| PWM             | Sim     |   Sim |    Sim |
+| BRUSHED         | Sim     |   Sim |    Sim |
+| ONESHOT125      | Sim     |   Sim |    Sim |
+| ONESHOT42       | -       |   Sim |    Sim |
+| MULTISHOT       | -       |   Sim |    Sim |
+| DSHOT150        | Sim     |   Sim |    Sim |
+| DSHOT300        | Sim     |   Sim |    Sim |
+| DSHOT600        | -       |   Sim |    Sim |
 
-## Supported Gyro devices
+# Outros Protocolos
 
-| Device      | ESP8266 | ESP32 | RP2040 |
+| Protocolo       | ESP8266 | ESP32 | RP2040 |
+|----------------:|--------:|------:|-------:|
+| MSP             | Sim     |   Sim |    Sim |
+| CLI             | Sim     |   Sim |    Sim |
+| BLACKBOX        | Sim     |   Sim |    Sim |
+| ESPNOW          | Sim     |   Sim |      - |
+
+## Giroscópios Suportados
+
+| Dispositivo | ESP8266 | ESP32 | RP2040 |
 |------------:|--------:|------:|-------:|
-| MPU6050     | Yes     |   Yes |    Yes |
-| MPU6000     | -       |   Yes |    Yes |
-| MPU6500     | Yes     |   Yes |    Yes |
-| MPU9250     | Yes     |   Yes |    Yes |
-| ICM20602    | Yes     |   Yes |    Yes |
-| BMI160      | Yes     |   Yes |    Yes |
+| MPU6050     | Sim     |   Sim |    Sim |
+| MPU6000     | -       |   Sim |    Sim |
+| MPU6500     | Sim     |   Sim |    Sim |
+| MPU9250     | Sim     |   Sim |    Sim |
+| ICM20602    | Sim     |   Sim |    Sim |
+| BMI160      | Sim     |   Sim |    Sim |
 
-## Supported Baro devices
+## Barômetros Suportados
 
-| Device      | ESP8266 | ESP32 | RP2040 |
+| Dispositivo | ESP8266 | ESP32 | RP2040 |
 |------------:|--------:|------:|-------:|
-| BMP180      | Yes     |   Yes |    Yes |
-| BMP280      | Yes     |   Yes |    Yes |
-| SPL06       | Yes     |   Yes |    Yes |
+| BMP180      | Sim     |   Sim |    Sim |
+| BMP280      | Sim     |   Sim |    Sim |
+| SPL06       | Sim     |   Sim |    Sim |
 
-## Supported Compass devices
+## Bússolas Suportadas
 
-| Device      | ESP8266 | ESP32 | RP2040 |
+| Dispositivo | ESP8266 | ESP32 | RP2040 |
 |------------:|--------:|------:|-------:|
-| HMC5883     | Yes     |   Yes |    Yes |
-| QMC5883     | Yes     |   Yes |    Yes |
-| AK8963      | Yes     |   Yes |    Yes |
-
-## Issues
-You can report issues using Github [tracker](https://github.com/rtlopez/esp-fc/issues)
-You can also join to our [Discord Channel](https://discord.gg/jhyPPM5UEH)
-
-## Development
-* Visual Studio Code
-* [PlatformIO](https://platformio.org/install/ide?install=vscode)
-* Git
-
-## Todo
-* Balancing robot
-* Serial Rx (IBUS)
-* ELRS telemetry
-* ESP32-S2/S3/C3 targets
-* Baro (MS5611)
-* GPS navigation
+| HMC5883     | Sim     |   Sim |    Sim |
+| QMC5883     | Sim     |   Sim |    Sim |
+| AK8963      | Sim     |   Sim |    Sim |
 
 ## Licence
 This project is distributed under MIT Licence. Bear in mind that:
@@ -162,8 +145,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Donations
-If you like this project and you want it to be still developed, you can support me a little.
-
-* BTC: 1Lopez7yPtbyjfLGe892JfheDFJMMt43tW
-* LTC: LV3G3sJxz9AYpDMYUp8e1LCmerFYxVY3ak
+[Repositório oficial](https://github.com/rtlopez/esp-fc)
