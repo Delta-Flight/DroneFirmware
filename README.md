@@ -1,8 +1,14 @@
 # Kwid-FC Firmware
 Neste repositório está o código fonte do firmware usado na controladora de voo ESP32 para o projeto KWID da DeltaV Drones
 
+
+> [!NOTE]
+> Nem todas as funções que aparecem no Betaflight Configurator estão realmente disponíveis no firmware. se você não consegue alterar uma determinada opção no Configurator, isso significa que ela não é suportada. Normalmente, o valor volta para o anterior depois de salvar.
+Aqui está mais detalhes sobre [Como configurar o Betaflight Configurator](/docs/setup.md).
+
+
 ## Alterações feitas para o KWID
-* Correção bruta de bias na variável Z do giroscópio. `_model.state.gyro.z += Math::toRad(29.99f);` na linha 96 do arquivo `lib\Espfc\src\Sensor\GyroSensor.cpp`.
+* Calibração de desvio (bias) do giroscópio por eixo, substituindo a correção bruta anterior. O algoritmo agora aplica a calibração individualmente a cada eixo, corrigindo de forma eficaz o drift persistente no eixo Z.
 
 ## Funcionalidades
 * Placas Espressif (ESP32, ESP8266, ESP32-S3, ESP32-S2, ESP32-C3)
@@ -38,23 +44,12 @@ Software:
 ## Gravar Firmware
 1. Download o firmware desejado na [Página de Lançamento](https://github.com/rtlopez/esp-fc/releases)
 2. Vá para [Site ESP Tool](https://espressif.github.io/esptool-js/)
-3. Clique em "Connect" e escolha a porta do dispositivo
+3. Selecione a baudrate de 115200, clique em "Connect" e escolha a porta do dispositivo
 4. Adicione o arquivo de firmware e escolha o "Flash Address" para `0x1000`
 5. Clique em "Program"
 6. Assim que concluir, reinicie o dispositivo
 
 OBS: Apenas ESP32 e ESP8266 podem ter o firmware gravado dessa forma.
-
-## Setup
-Depois de gravar o firmware, você precisa configurar algumas coisas:
- 1. Configure pinout according to your wiring, especially pin functions, you can find more information in [CLI Reference](/docs/cli.md)
- 2. Conecte ao [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases) e faça sua configuração inicial
- 3. Teste seus motores SEM hélice
- 4. Se divirta ;)
-
-> [!NOTA]
-> Nem todas as funções que aparecem no Betaflight Configurator estão realmente disponíveis no firmware. se você não consegue alterar uma determinada opção no Configurator, isso significa que ela não é suportada. Normalmente, o valor volta para o anterior depois de salvar.
-Aqui está mais detalhes sobre [Como configurar o Betaflight Configurator](/docs/setup.md).
 
 ## Chips Suportados
 
@@ -67,68 +62,68 @@ Aqui está mais detalhes sobre [Como configurar o Betaflight Configurator](/docs
 
 ## Interfaces Suportadas
 
-| Interface       | ESP8266 | ESP32 | RP2040 |
-|----------------:|--------:|------:|-------:|
-| UART            | Sim     |   Sim |    Sim |
-| I2C             | Sim     |   Sim |    Sim |
-| SPI             | -       |   Sim |    Sim |
+| Interface | ESP8266 | ESP32 | RP2040 |
+|---:|---:|---:|---:|
+| UART | Sim | Sim | Sim |
+| I2C | Sim | Sim | Sim |
+| SPI | - | Sim | Sim |
 
 ## Protocolos de Receptor Suportados
 
-| Protocol        | ESP8266 | ESP32 | RP2040 |
-|----------------:|--------:|------:|-------:|
-| PPM             | Sim     |   Sim |    Sim |
-| SBUS            | Sim     |   Sim |    Sim |
-| CRSF (ELRS)     | Sim     |   Sim |    Sim |
+| Protocol | ESP8266 | ESP32 | RP2040 |
+|---:|---:|---:|---:|
+| PPM | Sim | Sim | Sim |
+| SBUS | Sim | Sim | Sim |
+| CRSF (ELRS) | Sim | Sim | Sim |
 
 ## Protocolos de Motor Suportados
 
-| Protocol        | ESP8266 | ESP32 | RP2040 |
-|----------------:|--------:|------:|-------:|
-| PWM             | Sim     |   Sim |    Sim |
-| BRUSHED         | Sim     |   Sim |    Sim |
-| ONESHOT125      | Sim     |   Sim |    Sim |
-| ONESHOT42       | -       |   Sim |    Sim |
-| MULTISHOT       | -       |   Sim |    Sim |
-| DSHOT150        | Sim     |   Sim |    Sim |
-| DSHOT300        | Sim     |   Sim |    Sim |
-| DSHOT600        | -       |   Sim |    Sim |
+| Protocol | ESP8266 | ESP32 | RP2040 |
+|---:|---:|---:|---:|
+| PWM | Sim | Sim | Sim |
+| BRUSHED | Sim | Sim | Sim |
+| ONESHOT125 | Sim | Sim | Sim |
+| ONESHOT42 | - | Sim | Sim |
+| MULTISHOT | - | Sim | Sim |
+| DSHOT150 | Sim | Sim | Sim |
+| DSHOT300 | Sim | Sim | Sim |
+| DSHOT600 | - | Sim | Sim |
 
 # Outros Protocolos
 
-| Protocolo       | ESP8266 | ESP32 | RP2040 |
-|----------------:|--------:|------:|-------:|
-| MSP             | Sim     |   Sim |    Sim |
-| CLI             | Sim     |   Sim |    Sim |
-| BLACKBOX        | Sim     |   Sim |    Sim |
-| ESPNOW          | Sim     |   Sim |      - |
+| Protocolo | ESP8266 | ESP32 | RP2040 |
+|---:|---:|---:|---:|
+| MSP | Sim | Sim | Sim |
+| CLI | Sim | Sim | Sim |
+| BLACKBOX | Sim | Sim | Sim |
+| ESPNOW | Sim | Sim | - |
 
 ## Giroscópios Suportados
 
 | Dispositivo | ESP8266 | ESP32 | RP2040 |
-|------------:|--------:|------:|-------:|
-| MPU6050     | Sim     |   Sim |    Sim |
-| MPU6000     | -       |   Sim |    Sim |
-| MPU6500     | Sim     |   Sim |    Sim |
-| MPU9250     | Sim     |   Sim |    Sim |
-| ICM20602    | Sim     |   Sim |    Sim |
-| BMI160      | Sim     |   Sim |    Sim |
+|---:|---:|---:|---:|
+| MPU6050 | Sim | Sim | Sim |
+| MPU6000 | - | Sim | Sim |
+| MPU6500 | Sim | Sim | Sim |
+| MPU9250 | Sim | Sim | Sim |
+| ICM20602 | Sim | Sim | Sim |
+| BMI160 | Sim | Sim | Sim |
 
 ## Barômetros Suportados
 
 | Dispositivo | ESP8266 | ESP32 | RP2040 |
-|------------:|--------:|------:|-------:|
-| BMP180      | Sim     |   Sim |    Sim |
-| BMP280      | Sim     |   Sim |    Sim |
-| SPL06       | Sim     |   Sim |    Sim |
+|---:|---:|---:|---:|
+| BMP180 | Sim | Sim | Sim |
+| BMP280 | Sim | Sim | Sim |
+| SPL06 | Sim | Sim | Sim |
 
 ## Bússolas Suportadas
 
 | Dispositivo | ESP8266 | ESP32 | RP2040 |
-|------------:|--------:|------:|-------:|
-| HMC5883     | Sim     |   Sim |    Sim |
-| QMC5883     | Sim     |   Sim |    Sim |
-| AK8963      | Sim     |   Sim |    Sim |
+|---:|---:|---:|---:|
+| HMC5883 | Sim | Sim | Sim |
+| QMC5883 | Sim | Sim | Sim |
+| AK8963 | Sim | Sim | Sim |
 
 ## Licence
 This project is distributed under MIT Licence. Bear in mind that:

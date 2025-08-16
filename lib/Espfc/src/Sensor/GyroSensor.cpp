@@ -93,8 +93,6 @@ int FAST_CODE_ATTR GyroSensor::filter()
 
   calibrate();
 
-  _model.state.gyro.z += Math::toRad(29.99f); //ALTERAÇÃO BIAS OFFSET
-
   _model.state.gyroScaled = _model.state.gyro; // must be after calibration
 
   for (size_t i = 0; i < 3; ++i)
@@ -293,9 +291,14 @@ void FAST_CODE_ATTR GyroSensor::calibrate()
   {
     VectorFloat deltaAccel = _model.state.accel - _model.state.accelPrev;
     _model.state.accelPrev = _model.state.accel;
-    if (deltaAccel.getMagnitude() < ESPFC_FUZZY_ACCEL_ZERO && _model.state.gyro.getMagnitude() < ESPFC_FUZZY_GYRO_ZERO)
+    // Alteração: Calibrar apenas se o acelerômetro estiver estável.
+    if (deltaAccel.getMagnitude() < ESPFC_FUZZY_ACCEL_ZERO)
     {
-      _model.state.gyroBias += (_model.state.gyro - _model.state.gyroBias) * _model.state.gyroBiasAlpha;
+      // Alteração: O bias é atualizado para cada eixo individualmente.
+      _model.state.gyroBias.x += (_model.state.gyro.x - _model.state.gyroBias.x) * _model.state.gyroBiasAlpha;
+      _model.state.gyroBias.y += (_model.state.gyro.y - _model.state.gyroBias.y) * _model.state.gyroBiasAlpha;
+      _model.state.gyroBias.z += (_model.state.gyro.z - _model.state.gyroBias.z) * _model.state.gyroBiasAlpha;
+
       _model.state.gyroBiasSamples--;
     }
     if (_model.state.gyroBiasSamples <= 0)
