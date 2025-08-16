@@ -93,7 +93,7 @@ int FAST_CODE_ATTR GyroSensor::filter()
 
   calibrate();
 
-  _model.state.gyro.z += Math::toRad(29.99f); //alteração aqui
+  _model.state.gyro.z += Math::toRad(29.99f); //ALTERAÇÃO BIAS OFFSET
 
   _model.state.gyroScaled = _model.state.gyro; // must be after calibration
 

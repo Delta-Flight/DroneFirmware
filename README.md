@@ -2,6 +2,7 @@
 Neste repositório está o código fonte do firmware usado na controladora de voo ESP32 para o projeto KWID da DeltaV Drones
 
 ## Alterações feitas para o KWID
+* Correção bruta de bias na variável Z do giroscópio. `_model.state.gyro.z += Math::toRad(29.99f);` na linha 96 do arquivo `lib\Espfc\src\Sensor\GyroSensor.cpp`.
 
 ## Funcionalidades
 * Placas Espressif (ESP32, ESP8266, ESP32-S3, ESP32-S2, ESP32-C3)
@@ -140,4 +141,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[Repositório oficial](https://github.com/rtlopez/esp-fc)
+Este firmware foi baseado neste [Repositório](https://github.com/rtlopez/esp-fc)
