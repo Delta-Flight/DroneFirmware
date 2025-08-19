@@ -1,13 +1,13 @@
-# Kwid-FC Firmware
-Neste repositório está o código fonte do firmware usado na controladora de voo ESP32 para o projeto KWID da DeltaV Drones
+# Flight Control Firmware
+Neste repositório está o código fonte do firmware usado na controladora de voo ESP32.
 
 
 > [!NOTE]
-> Nem todas as funções que aparecem no Betaflight Configurator estão realmente disponíveis no firmware. se você não consegue alterar uma determinada opção no Configurator, isso significa que ela não é suportada. Normalmente, o valor volta para o anterior depois de salvar.
+> Nem todas as funções que aparecem no DeltaFlight estão realmente disponíveis no firmware. se você não consegue alterar uma determinada opção no Configurator, isso significa que ela não é suportada. Normalmente, o valor volta para o anterior depois de salvar.
 Aqui está mais detalhes sobre [Como configurar o Betaflight Configurator](/docs/setup.md).
 
 
-## Alterações feitas para o KWID
+## Alterações feitas
 * Calibração de desvio (bias) do giroscópio por eixo, substituindo a correção bruta anterior. O algoritmo agora aplica a calibração individualmente a cada eixo, corrigindo de forma eficaz o drift persistente no eixo Z.
 
 ## Funcionalidades
