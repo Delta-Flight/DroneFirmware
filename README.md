@@ -4,7 +4,7 @@ Neste repositório está o código fonte do firmware usado na controladora de vo
 
 > [!NOTE]
 > Nem todas as funções que aparecem no DeltaFlight estão realmente disponíveis no firmware. se você não consegue alterar uma determinada opção no Configurator, isso significa que ela não é suportada. Normalmente, o valor volta para o anterior depois de salvar.
-Aqui está mais detalhes sobre [Como configurar o Betaflight Configurator](/docs/setup.md).
+Aqui está mais detalhes sobre [Como configurar o DeltaGCS](/docs/setup.md).
 
 
 ## Alterações feitas
